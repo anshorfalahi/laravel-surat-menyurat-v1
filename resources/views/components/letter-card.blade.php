@@ -73,17 +73,33 @@
         <div class="d-flex justify-content-between flex-column flex-sm-row">
             <small class="text-secondary">{{ $letter->note }}</small>
             @if(count($letter->attachments))
-                <div>
+                <div class="mt-2">
                     @foreach($letter->attachments as $attachment)
-                        <a href="{{ $attachment->path_url }}" target="_blank">
-                            @if($attachment->extension == 'pdf')
-                                <i class="bx bxs-file-pdf display-6 cursor-pointer text-primary"></i>
-                            @elseif(in_array($attachment->extension, ['jpg', 'jpeg']))
-                                <i class="bx bxs-file-jpg display-6 cursor-pointer text-primary"></i>
-                            @elseif($attachment->extension == 'png')
-                                <i class="bx bxs-file-png display-6 cursor-pointer text-primary"></i>
-                            @endif
-                        </a>
+                        @if($attachment->extension == 'pdf')
+                            <a href="{{ $attachment->path_url }}" target="_blank" title="{{ $attachment->filename }}">
+                                <i class="bx bxs-file-pdf display-6 cursor-pointer text-primary me-2"></i>
+                            </a>
+                        @elseif(in_array(strtolower($attachment->extension), ['docx', 'doc']))
+                            <a href="{{ $attachment->path_url }}" download="{{ $attachment->filename }}" title="{{ $attachment->filename }}">
+                                <i class="bx bxs-file-doc display-6 cursor-pointer text-primary me-2"></i>
+                            </a>
+                        @elseif(in_array(strtolower($attachment->extension), ['xlsx', 'xls']))
+                            <a href="{{ $attachment->path_url }}" download="{{ $attachment->filename }}" title="{{ $attachment->filename }}">
+                                <i class="bx bxs-spreadsheet display-6 cursor-pointer text-primary me-2"></i>
+                            </a>
+                        @elseif(in_array($attachment->extension, ['jpg', 'jpeg']))
+                            <a href="{{ $attachment->path_url }}" target="_blank" title="{{ $attachment->filename }}">
+                                <i class="bx bxs-file-jpg display-6 cursor-pointer text-primary me-2"></i>
+                            </a>
+                        @elseif($attachment->extension == 'png')
+                            <a href="{{ $attachment->path_url }}" target="_blank" title="{{ $attachment->filename }}">
+                                <i class="bx bxs-file-png display-6 cursor-pointer text-primary me-2"></i>
+                            </a>
+                        @else
+                            <a href="{{ $attachment->path_url }}" download="{{ $attachment->filename }}" title="{{ $attachment->filename }}">
+                                <i class="bx bxs-file display-6 cursor-pointer text-secondary me-2"></i>
+                            </a>
+                        @endif
                     @endforeach
                 </div>
             @endif

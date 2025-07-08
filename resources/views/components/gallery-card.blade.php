@@ -17,6 +17,10 @@
                 <i class="bx bxs-file-png display-5"></i>
             @elseif(in_array(strtolower($extension), ['jpeg', 'jpg']))
                 <i class="bx bxs-file-jpg display-5"></i>
+            @elseif(in_array(strtolower($extension), ['docx', 'doc']))
+                <i class="bx bxs-file-doc display-5"></i>
+            @elseif(in_array(strtolower($extension), ['xlsx', 'xls']))
+                <i class="bx bxs-spreadsheet display-5"></i>
             @else
                 <i class="bx bxs-file display-5"></i>
             @endif
@@ -28,9 +32,15 @@
                 </button>
                 <div id="accordion-id-{{ str_replace('.', '-', $filename) }}" class="accordion-collapse collapse text-center" data-bs-parent="#accordion-{{ str_replace('.', '-', $filename) }}" style="">
                     @if(strtolower($extension) == 'pdf')
+                        <a class="btn my-3 btn-primary" href="{{ $path }}" target="_blank">{{ __('menu.general.open') }}</a>
+                        <a class="btn my-3 btn-secondary" download href="{{ $path }}">{{ __('menu.general.download') }}</a>
+                    @elseif(in_array(strtolower($extension), ['docx', 'doc', 'xlsx', 'xls']))
                         <a class="btn my-3 btn-primary" download href="{{ $path }}">{{ __('menu.general.download') }}</a>
                     @elseif(in_array(strtolower($extension), ['jpg', 'jpeg', 'png']))
-                        <img src="{{ $path }}" width="100%" alt="Picture">
+                        <img src="{{ $path }}" width="100%" alt="Picture" class="my-3">
+                        <a class="btn my-3 btn-secondary" download href="{{ $path }}">{{ __('menu.general.download') }}</a>
+                    @else
+                        <a class="btn my-3 btn-primary" download href="{{ $path }}">{{ __('menu.general.download') }}</a>
                     @endif
                 </div>
             </div>
