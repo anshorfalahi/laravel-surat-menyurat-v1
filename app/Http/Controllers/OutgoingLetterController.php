@@ -116,6 +116,7 @@ class OutgoingLetterController extends Controller
                 }
                 if (count($skippedFiles) > 0) {
                     $request->session()->flash('error_attachments', __('menu.general.skipped_files', ['files' => implode(', ', $skippedFiles)]));
+                    return redirect()->route('transaction.outgoing.index');
                 }
             }
             return redirect()
@@ -184,6 +185,7 @@ class OutgoingLetterController extends Controller
                 }
                 if (count($skippedFiles) > 0) {
                     $request->session()->flash('error_attachments', __('menu.general.skipped_files', ['files' => implode(', ', $skippedFiles)]));
+                    return back();
                 }
             }
             return back()->with('success', __('menu.general.success'));
