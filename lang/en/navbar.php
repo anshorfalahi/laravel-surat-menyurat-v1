@@ -8,7 +8,8 @@ return [
         'logout' => 'Logout',
         'deactivate_account' => 'Deactivate Account',
         'deactivate_confirm_message' => 'Are you sure you want to deactivate your account?',
-        'deactivate_confirm' => 'I confirm my account deactivation'
+        'deactivate_confirm' => 'I confirm my account deactivation',
+        'change_password' => 'Change Password',
     ],
     'search' => 'Search...'
 ];

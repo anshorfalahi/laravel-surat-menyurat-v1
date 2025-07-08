@@ -97,6 +97,74 @@
                 </form>
             </div>
 
+            {{-- Change Password Card --}}
+            <div class="card mb-4">
+                <h5 class="card-header">{{ __('navbar.profile.change_password') }}</h5>
+                <div class="card-body">
+                    <form method="POST" action="{{ route('user-password.update') }}">
+                        @csrf
+                        @method('PUT')
+
+                        <div class="row">
+                            <div class="mb-3 col-md-12 form-password-toggle">
+                                <label class="form-label" for="current_password">{{ __('model.user.current_password') }}</label>
+                                <div class="input-group input-group-merge">
+                                    <input type="password" name="current_password" id="current_password"
+                                           class="form-control @error('current_password', 'updatePassword') is-invalid @enderror"
+                                           placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
+                                           required autocomplete="current-password"/>
+                                    <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
+                                </div>
+                                @error('current_password', 'updatePassword')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="mb-3 col-md-6 form-password-toggle">
+                                <label class="form-label" for="password">{{ __('model.user.new_password') }}</label>
+                                <div class="input-group input-group-merge">
+                                    <input type="password" name="password" id="password"
+                                           class="form-control @error('password', 'updatePassword') is-invalid @enderror"
+                                           placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
+                                           required autocomplete="new-password"/>
+                                    <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
+                                </div>
+                                @error('password', 'updatePassword')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+
+                            <div class="mb-3 col-md-6 form-password-toggle">
+                                <label class="form-label" for="password_confirmation">{{ __('model.user.confirm_password') }}</label>
+                                <div class="input-group input-group-merge">
+                                    <input type="password" name="password_confirmation" id="password_confirmation"
+                                           class="form-control @error('password_confirmation', 'updatePassword') is-invalid @enderror"
+                                           placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
+                                           required autocomplete="new-password"/>
+                                    <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
+                                </div>
+                                @error('password_confirmation', 'updatePassword')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                            <div class="col-12">
+                                <p class="text-muted mb-0">Minimum 8 characters</p> {{-- Assuming default Fortify rules, can be made dynamic if PasswordValidationRules are more complex --}}
+                            </div>
+                        </div>
+                        <div class="mt-4">
+                            <button type="submit" class="btn btn-primary me-2">{{ __('menu.general.update') }}</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
             @if(auth()->user()->role == 'staff')
             <div class="card">
                 <h5 class="card-header">{{ __('navbar.profile.deactivate_account') }}</h5>

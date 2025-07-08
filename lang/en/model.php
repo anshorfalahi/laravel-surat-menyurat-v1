@@ -48,6 +48,9 @@ return [
         'active' => 'Active',
         'nonactive' => 'Nonactive',
         'reset_password' => 'Reset Password to Default?',
+        'current_password' => 'Current Password',
+        'new_password' => 'New Password',
+        'confirm_password' => 'Confirm New Password',
     ],
     'general' => [
         'created_at' => 'Created At',

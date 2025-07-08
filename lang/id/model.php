@@ -48,6 +48,9 @@ return [
         'active' => 'Aktif',
         'nonactive' => 'Nonaktif',
         'reset_password' => 'Setel ulang Kata Sandi menjadi bawaan?',
+        'current_password' => 'Kata Sandi Saat Ini',
+        'new_password' => 'Kata Sandi Baru',
+        'confirm_password' => 'Konfirmasi Kata Sandi Baru',
     ],
     'general' => [
         'created_at' => 'Dibuat pada',
