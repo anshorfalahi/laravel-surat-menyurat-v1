@@ -17,6 +17,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use Laravel\Fortify\Contracts\UpdatesUserPasswords;
 
 
 class PageController extends Controller
@@ -91,6 +92,18 @@ class PageController extends Controller
         } catch (\Throwable $exception) {
             return back()->with('error', $exception->getMessage());
         }
+    }
+
+    /**
+     * @param Request $request
+     * @param UpdatesUserPasswords $updater
+     * @return RedirectResponse
+     */
+    public function updatePassword(Request $request, UpdatesUserPasswords $updater): RedirectResponse
+    {
+        $updater->update(Auth::user(), $request->all());
+
+        return back()->with('status', __('Password updated successfully.')); // Fortify typically uses 'status' for success messages
     }
 
     /**

@@ -24,6 +24,8 @@ Route::middleware(['auth'])->group(function () {
         ->name('profile.show');
     Route::put('profile', [\App\Http\Controllers\PageController::class, 'profileUpdate'])
         ->name('profile.update');
+    Route::put('profile/password', [\App\Http\Controllers\PageController::class, 'updatePassword'])
+        ->name('profile.password.update');
     Route::put('profile/deactivate', [\App\Http\Controllers\PageController::class, 'deactivate'])
         ->name('profile.deactivate')
         ->middleware(['role:staff']);

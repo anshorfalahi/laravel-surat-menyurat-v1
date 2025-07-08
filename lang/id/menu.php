@@ -54,6 +54,7 @@ return [
         'fail' => 'Gagal',
         'doesnt_exists' => ":attribute tidak ada",
         'skipped_files' => "Berkas berikut dilewati karena tipenya tidak didukung: :files",
+        'password_updated_successfully' => 'Kata sandi berhasil diperbarui.',
     ],
     'auth' => [
         'login' => 'Masuk',

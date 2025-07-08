@@ -54,6 +54,7 @@ return [
         'fail' => 'Fail',
         'doesnt_exists' => ":attribute doesn't exists",
         'skipped_files' => "The following files were skipped because their type is not supported: :files",
+        'password_updated_successfully' => 'Password updated successfully.',
     ],
     'auth' => [
         'login' => 'Login',

@@ -148,6 +148,13 @@
             title: '{{ session('success') }}'
         })
     </script>
+@elseif(session('status')) {{-- Added to handle Fortify's common status messages --}}
+    <script>
+        Toast.fire({
+            icon: 'success', // Assuming 'status' is generally a success message
+            title: '{{ session('status') }}'
+        })
+    </script>
 @elseif(session('error'))
     <script>
         Toast.fire({
