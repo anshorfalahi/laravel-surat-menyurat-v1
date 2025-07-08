@@ -101,7 +101,7 @@
             <div class="card mb-4">
                 <h5 class="card-header">{{ __('navbar.profile.change_password') }}</h5>
                 <div class="card-body">
-                    <form method="POST" action="{{ route('user-password.update') }}">
+                    <form method="POST" action="{{ url('/user/password') }}">
                         @csrf
                         @method('PUT')
 
