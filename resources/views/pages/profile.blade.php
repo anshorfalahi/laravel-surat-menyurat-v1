@@ -101,6 +101,18 @@
             <div class="card mb-4">
                 <h5 class="card-header">{{ __('navbar.profile.change_password') }}</h5>
                 <div class="card-body">
+                    {{-- Display Password Update Validation Error Summary --}}
+                    @if ($errors->updatePassword->any())
+                        <div class="alert alert-danger" role="alert">
+                            <h6 class="alert-heading fw-bold mb-1">{{ __('menu.general.validation_error_header') }}</h6>
+                            <ul>
+                                @foreach ($errors->updatePassword->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+
                     <form method="POST" action="{{ route('profile.password.update') }}">
                         @csrf
                         @method('PUT')

@@ -55,6 +55,7 @@ return [
         'doesnt_exists' => ":attribute tidak ada",
         'skipped_files' => "Berkas berikut dilewati karena tipenya tidak didukung: :files",
         'password_updated_successfully' => 'Kata sandi berhasil diperbarui.',
+        'validation_error_header' => 'Ups! Silakan perbaiki kesalahan di bawah ini:',
     ],
     'auth' => [
         'login' => 'Masuk',
