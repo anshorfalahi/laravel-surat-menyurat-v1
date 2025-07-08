@@ -99,7 +99,7 @@ class OutgoingLetterController extends Controller
             if ($request->hasFile('attachments')) {
                 foreach ($request->attachments as $attachment) {
                     $extension = $attachment->getClientOriginalExtension();
-                    if (!in_array($extension, ['png', 'jpg', 'jpeg', 'pdf'])) continue;
+                    if (!in_array($extension, ['png', 'jpg', 'jpeg', 'pdf', 'docx', 'xlsx'])) continue;
                     $filename = uniqid() . '.' . $extension;
                     $attachment->storeAs('attachments', $filename, 'public');
                     Attachment::create([
@@ -159,7 +159,7 @@ class OutgoingLetterController extends Controller
             if ($request->hasFile('attachments')) {
                 foreach ($request->attachments as $attachment) {
                     $extension = $attachment->getClientOriginalExtension();
-                    if (!in_array($extension, ['png', 'jpg', 'jpeg', 'pdf'])) continue;
+                    if (!in_array($extension, ['png', 'jpg', 'jpeg', 'pdf', 'docx', 'xlsx'])) continue;
                     $filename = uniqid() . '.' . $extension;
                     $attachment->storeAs('attachments', $filename, 'public');
                     Attachment::create([
