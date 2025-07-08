@@ -14,6 +14,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class OutgoingLetterController extends Controller
 {
@@ -105,7 +106,9 @@ class OutgoingLetterController extends Controller
                         $skippedFiles[] = $originalFilename;
                         continue;
                     }
-                    $filename = uniqid() . '.' . $extension;
+                    $filename = uniqid() . '_' . $originalFilename;
+                    // Pastikan nama file tidak terlalu panjang atau mengandung karakter yang tidak valid
+                    $filename = Str::slug(pathinfo($filename, PATHINFO_FILENAME), '-') . '.' . $extension;
                     $attachment->storeAs('attachments', $filename, 'public');
                     Attachment::create([
                         'filename' => $filename,
@@ -174,7 +177,9 @@ class OutgoingLetterController extends Controller
                         $skippedFiles[] = $originalFilename;
                         continue;
                     }
-                    $filename = uniqid() . '.' . $extension;
+                    $filename = uniqid() . '_' . $originalFilename;
+                    // Pastikan nama file tidak terlalu panjang atau mengandung karakter yang tidak valid
+                    $filename = Str::slug(pathinfo($filename, PATHINFO_FILENAME), '-') . '.' . $extension;
                     $attachment->storeAs('attachments', $filename, 'public');
                     Attachment::create([
                         'filename' => $filename,
