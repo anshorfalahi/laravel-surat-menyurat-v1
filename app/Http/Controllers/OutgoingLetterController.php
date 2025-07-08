@@ -97,9 +97,14 @@ class OutgoingLetterController extends Controller
             $newLetter['user_id'] = $user->id;
             $letter = Letter::create($newLetter);
             if ($request->hasFile('attachments')) {
+                $skippedFiles = [];
                 foreach ($request->attachments as $attachment) {
                     $extension = $attachment->getClientOriginalExtension();
-                    if (!in_array($extension, ['png', 'jpg', 'jpeg', 'pdf', 'docx', 'xlsx'])) continue;
+                    $originalFilename = $attachment->getClientOriginalName();
+                    if (!in_array($extension, ['png', 'jpg', 'jpeg', 'pdf', 'docx', 'xlsx'])) {
+                        $skippedFiles[] = $originalFilename;
+                        continue;
+                    }
                     $filename = uniqid() . '.' . $extension;
                     $attachment->storeAs('attachments', $filename, 'public');
                     Attachment::create([
@@ -108,6 +113,9 @@ class OutgoingLetterController extends Controller
                         'user_id' => $user->id,
                         'letter_id' => $letter->id,
                     ]);
+                }
+                if (count($skippedFiles) > 0) {
+                    $request->session()->flash('error_attachments', __('menu.general.skipped_files', ['files' => implode(', ', $skippedFiles)]));
                 }
             }
             return redirect()
@@ -157,9 +165,14 @@ class OutgoingLetterController extends Controller
         try {
             $outgoing->update($request->validated());
             if ($request->hasFile('attachments')) {
+                $skippedFiles = [];
                 foreach ($request->attachments as $attachment) {
                     $extension = $attachment->getClientOriginalExtension();
-                    if (!in_array($extension, ['png', 'jpg', 'jpeg', 'pdf', 'docx', 'xlsx'])) continue;
+                    $originalFilename = $attachment->getClientOriginalName();
+                    if (!in_array($extension, ['png', 'jpg', 'jpeg', 'pdf', 'docx', 'xlsx'])) {
+                        $skippedFiles[] = $originalFilename;
+                        continue;
+                    }
                     $filename = uniqid() . '.' . $extension;
                     $attachment->storeAs('attachments', $filename, 'public');
                     Attachment::create([
@@ -168,6 +181,9 @@ class OutgoingLetterController extends Controller
                         'user_id' => auth()->user()->id,
                         'letter_id' => $outgoing->id,
                     ]);
+                }
+                if (count($skippedFiles) > 0) {
+                    $request->session()->flash('error_attachments', __('menu.general.skipped_files', ['files' => implode(', ', $skippedFiles)]));
                 }
             }
             return back()->with('success', __('menu.general.success'));

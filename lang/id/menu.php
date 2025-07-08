@@ -53,6 +53,7 @@ return [
         'success' => 'Berhasil',
         'fail' => 'Gagal',
         'doesnt_exists' => ":attribute tidak ada",
+        'skipped_files' => "Berkas berikut dilewati karena tipenya tidak didukung: :files",
     ],
     'auth' => [
         'login' => 'Masuk',

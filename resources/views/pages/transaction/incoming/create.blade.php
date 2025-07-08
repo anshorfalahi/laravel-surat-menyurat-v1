@@ -5,6 +5,12 @@
         :values="[__('menu.transaction.menu'), __('menu.transaction.incoming_letter'), __('menu.general.create')]">
     </x-breadcrumb>
 
+    @if(session()->has('error_attachments'))
+        <div class="alert alert-danger" role="alert">
+            {{ session('error_attachments') }}
+        </div>
+    @endif
+
     <div class="card mb-4">
         <form action="{{ route('transaction.incoming.store') }}" method="POST" enctype="multipart/form-data">
             @csrf

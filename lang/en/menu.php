@@ -53,6 +53,7 @@ return [
         'success' => 'Success',
         'fail' => 'Fail',
         'doesnt_exists' => ":attribute doesn't exists",
+        'skipped_files' => "The following files were skipped because their type is not supported: :files",
     ],
     'auth' => [
         'login' => 'Login',
